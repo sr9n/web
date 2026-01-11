@@ -45,19 +45,25 @@ const App = () => {
 
   useEffect(() => {
     const checkAuth = () => {
-      const urlParams = new URLSearchParams(window.location.search);
-      const code = urlParams.get('code');
-      if (code) {
-        // Mock Server Response for UI presentation
-        setUser({
-          username: "Elite_User",
-          avatar: "https://api.dicebear.com/7.x/identicon/svg?seed=zenith-user",
-          role: "ACCESS_LEVEL_10",
-          id: "882319457221"
-        });
-        window.history.replaceState({}, document.title, "/");
+      try {
+        const urlParams = new URLSearchParams(window.location.search);
+        const code = urlParams.get('code');
+        if (code) {
+          // Mock Server Response for UI presentation
+          setUser({
+            username: "Elite_User",
+            avatar: "https://api.dicebear.com/7.x/identicon/svg?seed=zenith-user",
+            role: "ACCESS_LEVEL_10",
+            id: "882319457221"
+          });
+          // Clean URL without refreshing
+          window.history.replaceState({}, document.title, window.location.pathname);
+        }
+      } catch (err) {
+        console.error("Auth initialization failed", err);
+      } finally {
+        setLoading(false);
       }
-      setLoading(false);
     };
     checkAuth();
   }, []);
