@@ -18,6 +18,13 @@ import {
   UploadCloud
 } from 'lucide-react';
 
+/**
+ * ملاحظة تقنية لمشكلة الـ Build:
+ * الخطأ "react-scripts: command not found" يعني أن المكتبات غير مثبتة.
+ * تأكد من وجود ملف package.json يحتوي على "react-scripts" في قسم "dependencies".
+ * وتأكد من تشغيل "npm install" قبل "npm run build".
+ */
+
 // --- Configuration ---
 const CLIENT_ID = "1459865756463534140";
 const REDIRECT_URI = "https://zenith.fwh.is/index.php"; 
